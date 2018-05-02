@@ -59,33 +59,33 @@ jobs:
   01-login:
     machine: true
     environment:
-      - AUTH0_CFG: 01-Login/src/app/auth/auth0-variables.ts
+      - AUTH0_CFG: 01-Login/auth0-variables.js
       - SAMPLE_PATH: 01-Login
     <<: *defaults
-  02-user-profile:
-    machine: true
-    environment:
-      - AUTH0_CFG: 02-User-Profile/src/app/auth/auth0-variables.ts
-      - SAMPLE_PATH: 02-User-Profile
-    <<: *defaults
-  03-calling-an-api:
-    machine: true
-    environment:
-      - AUTH0_CFG: 03-Calling-an-API/src/app/auth/auth0-variables.ts
-      - SAMPLE_PATH: 03-Calling-an-API
-    <<: *defaults
-  04-authorization:
-    machine: true
-    environment:
-      - AUTH0_CFG: 04-Authorization/src/app/auth/auth0-variables.ts
-      - SAMPLE_PATH: 04-Authorization
-    <<: *defaults
-  05-token-renewal:
-    machine: true
-    environment:
-      - AUTH0_CFG: 05-Token-Renewal/src/app/auth/auth0-variables.ts
-      - SAMPLE_PATH: 05-Token-Renewal
-    <<: *defaults
+  #02-user-profile:
+  #  machine: true
+  #  environment:
+  #    - AUTH0_CFG: 02-User-Profile/src/app/auth/auth0-variables.ts
+  #    - SAMPLE_PATH: 02-User-Profile
+  #  <<: *defaults
+  #03-calling-an-api:
+  #  machine: true
+  #  environment:
+  #    - AUTH0_CFG: 03-Calling-an-API/src/app/auth/auth0-variables.ts
+  #    - SAMPLE_PATH: 03-Calling-an-API
+  #  <<: *defaults
+  #04-authorization:
+  #  machine: true
+  #  environment:
+  #    - AUTH0_CFG: 04-Authorization/src/app/auth/auth0-variables.ts
+  #    - SAMPLE_PATH: 04-Authorization
+  #  <<: *defaults
+  #05-token-renewal:
+  #  machine: true
+  #  environment:
+  #    - AUTH0_CFG: 05-Token-Renewal/src/app/auth/auth0-variables.ts
+  #    - SAMPLE_PATH: 05-Token-Renewal
+  #  <<: *defaults
 
 workflows:
   version: 2
