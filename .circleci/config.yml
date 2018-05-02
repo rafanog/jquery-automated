@@ -12,9 +12,9 @@ defaults: &defaults
           name: Replace Auth0 test credentials
           command: |
             mv $AUTH0_CFG.example $AUTH0_CFG
-            sed -i 's/{CLIENT_ID}/'$AUTH0_TEST_CLIENT_ID'/g' $AUTH0_CFG
-            sed -i 's/{DOMAIN}/'$AUTH0_TEST_DOMAIN'/g' $AUTH0_CFG
-            sed -i 's/{API_IDENTIFIER}/'$AUTH0_TEST_API_IDENTIFIER'/g' $AUTH0_CFG
+            sed -i 's/{CLIENT_ID}/$AUTH0_TEST_CLIENT_ID/' $AUTH0_CFG
+            sed -i 's/{DOMAIN}/$AUTH0_TEST_DOMAIN/' $AUTH0_CFG
+            sed -i 's/{API_IDENTIFIER}/$AUTH0_TEST_API_IDENTIFIER/' $AUTH0_CFG
       - run:
           name: Build pull request
           command: |
@@ -50,7 +50,7 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: git clone https://github.com/auth0-samples/spa-quickstarts-tests scripts
+      - run: git clone https://github.com/rafanog/spa-script scripts
       - persist_to_workspace:
           root: ~/ 
           paths:
@@ -62,30 +62,30 @@ jobs:
       - AUTH0_CFG: 01-Login/auth0-variables.js
       - SAMPLE_PATH: 01-Login
     <<: *defaults
-  #02-user-profile:
-  #  machine: true
-  #  environment:
-  #    - AUTH0_CFG: 02-User-Profile/src/app/auth/auth0-variables.ts
-  #    - SAMPLE_PATH: 02-User-Profile
-  #  <<: *defaults
-  #03-calling-an-api:
-  #  machine: true
-  #  environment:
-  #    - AUTH0_CFG: 03-Calling-an-API/src/app/auth/auth0-variables.ts
-  #    - SAMPLE_PATH: 03-Calling-an-API
-  #  <<: *defaults
-  #04-authorization:
-  #  machine: true
-  #  environment:
-  #    - AUTH0_CFG: 04-Authorization/src/app/auth/auth0-variables.ts
-  #    - SAMPLE_PATH: 04-Authorization
-  #  <<: *defaults
-  #05-token-renewal:
-  #  machine: true
-  #  environment:
-  #    - AUTH0_CFG: 05-Token-Renewal/src/app/auth/auth0-variables.ts
-  #    - SAMPLE_PATH: 05-Token-Renewal
-  #  <<: *defaults
+  02-user-profile:
+    machine: true
+    environment:
+      - AUTH0_CFG: 02-User-Profile/auth0-variables.js
+      - SAMPLE_PATH: 02-User-Profile
+    <<: *defaults
+  03-calling-an-api:
+    machine: true
+    environment:
+      - AUTH0_CFG: 03-Calling-an-API/src/app/auth/auth0-variables.ts
+      - SAMPLE_PATH: 03-Calling-an-API
+    <<: *defaults
+  04-authorization:
+    machine: true
+    environment:
+      - AUTH0_CFG: 04-Authorization/src/app/auth/auth0-variables.ts
+      - SAMPLE_PATH: 04-Authorization
+    <<: *defaults
+  05-token-renewal:
+    machine: true
+    environment:
+      - AUTH0_CFG: 05-Token-Renewal/src/app/auth/auth0-variables.ts
+      - SAMPLE_PATH: 05-Token-Renewal
+    <<: *defaults
 
 workflows:
   version: 2
@@ -97,19 +97,19 @@ workflows:
           context: Quickstart SPA Test
           requires:
             - checkout
-      - 02-user-profile:
-          context: Quickstart SPA Test
-          requires:
-            - checkout
-      - 03-calling-an-api:
-          context: Quickstart SPA Test
-          requires:
-            - checkout
-      - 04-authorization:
-          context: Quickstart SPA Test
-          requires:
-            - checkout
-      - 05-token-renewal:
-          context: Quickstart SPA Test
-          requires:
-            - checkout
+      #- 02-user-profile:
+      #    context: Quickstart SPA Test
+      #    requires:
+      #      - checkout
+      #- 03-calling-an-api:
+      #    context: Quickstart SPA Test
+      #    requires:
+      #      - checkout
+      #- 04-authorization:
+      #    context: Quickstart SPA Test
+      #    requires:
+      #      - checkout
+      #- 05-token-renewal:
+      #    context: Quickstart SPA Test
+      #    requires:
+      #      - checkout
