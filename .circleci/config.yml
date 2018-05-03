@@ -12,10 +12,13 @@ defaults: &defaults
       - run:
           name: Replace Auth0 test credentials
           command: |
-            mv $AUTH0_CFG.example $AUTH0_CFG
-            sed -i 's/{CLIENT_ID}/$AUTH0_TEST_CLIENT_ID/' $AUTH0_CFG
-            sed -i 's/{DOMAIN}/$AUTH0_TEST_DOMAIN/' $AUTH0_CFG
-            sed -i 's/{API_IDENTIFIER}/$AUTH0_TEST_API_IDENTIFIER/' $AUTH0_CFG
+          #  mv $AUTH0_CFG.example $AUTH0_CFG
+          #  sed -i 's/{CLIENT_ID}/$AUTH0_TEST_CLIENT_ID/' $AUTH0_CFG
+          #  sed -i 's/{DOMAIN}/$AUTH0_TEST_DOMAIN/' $AUTH0_CFG
+          #  sed -i 's/{API_IDENTIFIER}/$AUTH0_TEST_API_IDENTIFIER/' $AUTH0_CFG
+          echo "var AUTH0_CLIENT_ID='$AUTH0_TEST_CLIENT_ID';" >> $AUTH0_CFG
+          echo "var AUTH0_DOMAIN='$AUTH0_TEST_DOMAIN';" >> $AUTH0_CFG
+          echo "var AUTH0_CALLBACK_URL=location.href;" >> $AUTH0_CFG
       - run:
           name: Build pull request
           command: |
